@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Killah Bees Exterminators</title>
+  <style>
+    body {
+      font-family: "Rockwell Extra Bold", serif;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+      background: linear-gradient(to right, #F0D9BA, #F37021);
+      color: #402419;
+      cursor: none; /* hide default cursor */
+    }
+
+    header {
+      background-color: rgba(255,255,255,0.8);
+      padding: 60px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 5rem;
+    }
+
+    h2 {
+      margin-top: 40px;
+      font-size: 3rem;
+    }
+
+    p {
+      font-size: 2.5rem;
+    }
+
+    button {
+      background-color: #F0D9BA;
+      color: hsl(23, 90%, 54%);
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    button:hover {
+      background-color: #cf6e19;
+    }
+
+    .photo-gallery img {
+      max-width: 300px;
+      margin: 20px;
+    }
+
+    /* Wasp cursor styling */
+    #cursor-wasp {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 36px;
+      height: 36px;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      z-index: 9999;
+      transition: transform 0.06s linear;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      #cursor-wasp { transition: none; }
+    }
+
+    /* Logo positioning */
+.logo-left {
+  position: absolute;
+  top: 200px;
+  left: 200px;
+  width: 230px; /* adjust size */
+  height: auto;
+}
+
+.logo-right {
+  position: absolute;
+  top: 200px;
+  right: 200px;
+  width: 230px; /* adjust size */
+  height: auto;
+}
+
+/* Make header position relative to contain logos */
+header {
+  position: relative;
+}
+
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Killah Beez Exterminators</h1>
+    <p>Professional Bee Extractors</p>
+  </header>
+
+  <h1>Leader Killah Kev</h1>
+
+  <div class="photo-gallery">
+    <img src="killahK.jpg.png" alt="Leader Killah Kev">
+  </div>
+
+  <main>
+    <p>What is our motto?:</p>
+    <button onclick="sayHello()">Find out</button>
+    <p id="motto"></p>
+  </main>
+
+  <h2>The Dream Team</h2>
+  <div class="photo-gallery">
+    <img src="Squadgoals.jpeg" alt="Our Fresh As Hell Squad">
+  </div>
+
+  <!-- Wasp cursor -->
+  <img id="cursor-wasp" src="waspcursor.png" alt="">
+
+  <script>
+    // Motto button function
+    function sayHello() {
+      document.getElementById("motto").innerText = "Fuck those beez 🐝";
+    }
+
+    // Animated, rotating, buzzing wasp cursor
+    (function () {
+      const wasp = document.getElementById('cursor-wasp');
+      let x = window.innerWidth / 2, y = window.innerHeight / 2;
+      let targetX = x, targetY = y;
+      let rafId = null;
+      let tick = 0; // for buzzing effect
+
+      function animate() {
+        // smooth movement
+        x += (targetX - x) * 0.25;
+        y += (targetY - y) * 0.25;
+
+        // calculate angle toward cursor
+        const dx = targetX - x;
+        const dy = targetY - y;
+        const angle = Math.atan2(dy, dx) * (180 / Math.PI);
+
+        // buzzing tilt effect
+        const buzz = Math.sin(tick) * 15; // intensity
+        tick += 0.3; // speed of buzzing
+
+        // combine translation, rotation, and tilt
+        wasp.style.transform = `translate(${x}px, ${y}px) rotate(${angle + buzz}deg)`;
+
+        rafId = requestAnimationFrame(animate);
+      }
+
+      window.addEventListener('mousemove', (e) => {
+        targetX = e.clientX;
+        targetY = e.clientY;
+        if (!rafId) rafId = requestAnimationFrame(animate);
+      });
+
+      window.addEventListener('mouseleave', () => {
+        cancelAnimationFrame(rafId);
+        rafId = null;
+      });
+    })();
+  </script>
+</body>
+</html>
+
+<!-- Logo links -->
+<a href="https://www.facebook.com/share/16epG9JcZz/?mibextid=wwXIfr " target="_blank">
+  <img src="logo.jpg" alt="Killah Beez Logo" class="logo-left">
+</a>
+
+<a href="https://www.facebook.com/share/16epG9JcZz/?mibextid=wwXIfr " target="_blank">
+  <img src="logo.jpg" alt="Killah Beez Logo" class="logo-right">
+</a>
+
+<p>
+  <a href="https://www.facebook.com/share/16epG9JcZz/?mibextid=wwXIfr " target="_blank">
+    Click Logos or Here for our Facebook page!
+  </a>
+</p>
